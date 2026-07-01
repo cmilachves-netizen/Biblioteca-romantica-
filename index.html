@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Biblioteca Romántica</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background: linear-gradient(135deg,#fde2e4,#fff1e6,#e2ece9);
+color:#3b2f2f;
+}
+
+header{
+text-align:center;
+padding:25px;
+background:#be123c;
+color:white;
+font-size:28px;
+font-weight:bold;
+}
+
+.sub{
+text-align:center;
+color:#7a1f2b;
+margin-top:-10px;
+}
+
+.container{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:20px;
+padding:20px;
+}
+
+.card{
+background:white;
+border-radius:15px;
+overflow:hidden;
+box-shadow:0 10px 25px rgba(0,0,0,0.15);
+transition:0.3s;
+}
+
+.card:hover{
+transform:scale(1.02);
+}
+
+img{
+width:100%;
+height:320px;
+object-fit:cover;
+}
+
+.content{
+padding:15px;
+}
+
+h2{
+color:#be123c;
+margin:5px 0;
+}
+
+button{
+margin-top:10px;
+padding:8px 12px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+background:#ef4444;
+color:white;
+font-weight:bold;
+margin-right:5px;
+}
+
+button:hover{
+background:#b91c1c;
+}
+
+.info{
+display:none;
+margin-top:10px;
+font-size:14px;
+line-height:1.4;
+}
+
+a{
+color:#b91c1c;
+font-weight:bold;
+text-decoration:none;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>💖 Biblioteca Romántica</header>
+<p class="sub">Historias de amor que te van a enamorar 📚</p>
+
+<div class="container" id="lista"></div>
+
+<script>
+
+const libros = [
+
+{
+titulo:"El mapa de los anhelos",
+autor:"Alice Kellen",
+anio:"2022",
+img:"https://share.google/aQd9DUi67RTdoyHwM",
+desc:"Una historia sobre amor, pérdida y descubrimiento personal.",
+link:"https://share.google/aQd9DUi67RTdoyHwM"
+},
+
+{
+titulo:"Orgullo y Prejuicio",
+autor:"Jane Austen",
+anio:"1813",
+img:"https://librerialannister.com/product/orgullo-y-prejuicio-3/",
+desc:"Amor clásico entre Elizabeth Bennet y Mr. Darcy.",
+link:"https://librerialannister.com/product/orgullo-y-prejuicio-3/"
+},
+
+{
+titulo:"Sentido y Sensibilidad",
+autor:"Jane Austen",
+anio:"1811",
+img:"https://www.akal.com/libro/sentido-y-sensibilidad-edicion-anotada_55105/",
+desc:"Dos hermanas enfrentan amor y sociedad.",
+link:"https://www.akal.com/libro/sentido-y-sensibilidad-edicion-anotada_55105/"
+},
+
+{
+titulo:"Cartas a los perdidos",
+autor:"Brigid Kemmerer",
+anio:"2017",
+img:"https://www.buscalibre.com.co/libro-cartas-a-los-perdidos/9789877472691/p/48246263",
+desc:"Dos jóvenes conectan por cartas sin conocerse.",
+link:"https://www.buscalibre.com.co/libro-cartas-a-los-perdidos/9789877472691/p/48246263"
+},
+
+{
+titulo:"El día que dejó de nevar en Alaska",
+autor:"Alice Kellen",
+anio:"2017",
+img:"https://m.media-amazon.com/images/I/81w5s2n3c3L.jpg",
+desc:"Amor y segundas oportunidades en Alaska.",
+link:"https://www.amazon.com/dej%C3%B3-nevar-Alaska-Fresh-Spanish/dp/8417421564"
+},
+
+{
+titulo:"Si fuéramos eternos",
+autor:"Emma Gil",
+anio:"Contemporáneo",
+img:"https://m.media-amazon.com/images/I/81G2c1Q5QCL.jpg",
+desc:"Amor sin límites y decisiones difíciles.",
+link:"https://www.amazon.com/-/es/Emma-Gil-ebook/dp/B0G8FRBQJS"
+},
+
+{
+titulo:"El arte de ser nosotros",
+autor:"Inma Rubiales",
+anio:"2022",
+img:"https://avifyshop.com/cr/wp-content/uploads/2023/01/el-artede-ser-nosotros.jpg",
+desc:"Amor que sana heridas del pasado.",
+link:"https://avifyshop.com/cr/elartedesernosotrosinmarubiales.html"
+},
+
+{
+titulo:"Mejor que en las películas",
+autor:"Lynn Painter",
+anio:"2021",
+img:"https://m.media-amazon.com/images/I/81q2cQb9ZDL.jpg",
+desc:"El amor real vs expectativas.",
+link:"https://www.amazon.com/-/es/Mejor-que-las-pel%C3%ADculas-Spanish/dp/8419252182"
+}
+
+];
+
+function render(){
+
+let cont=document.getElementById("lista");
+cont.innerHTML="";
+
+libros.forEach((l,i)=>{
+
+let div=document.createElement("div");
+div.className="card";
+
+div.innerHTML=`
+<img src="${l.img}" alt="${l.titulo}">
+<div class="content">
+
+<h2>${l.titulo}</h2>
+<p><b>Autor:</b> ${l.autor}</p>
+<p><b>Año:</b> ${l.anio}</p>
+
+<button onclick="toggle(${i})">📖 Ver descripción</button>
+<button onclick="window.open('${l.link}','_blank')">🔗 Comprar</button>
+
+<div class="info" id="info${i}">
+<p>${l.desc}</p>
+</div>
+
+</div>
+`;
+
+cont.appendChild(div);
+});
+
+}
+
+function toggle(i){
+let el=document.getElementById("info"+i);
+el.style.display = el.style.display==="block"?"none":"block";
+}
+
+render();
+
+</script>
+
+</body>
+</html>
